@@ -15,7 +15,7 @@ modules:
       - xdg-desktop-portal-hyprland
       
       # --- Hardware & Drivers ---
-      - libva-nvidia-driver
+      - nvidia-vaapi-driver  # Corrected name for Fedora 44
       - v4l2loopback
       - keyd
       
@@ -27,14 +27,14 @@ modules:
       - tmux
       - stow
       
-      # --- Dev & Cloud (Moved back here for base image stability) ---
+      # --- Development & Cloud ---
       - golang
       - gcc
       - gcc-c++
       - make
       - python3
       - python3-pip
-      - awscli2
+      - awscli               # Corrected from awscli2
       - kubernetes-client
       - helm
       
@@ -50,10 +50,6 @@ modules:
       - fzf
       - just
       - distrobox
-
-  - type: brew
-    # The brew module now handles its own internal logic. 
-    # You run 'brew install' in your terminal after booting.
 
   - type: default-flatpaks
     configurations:
