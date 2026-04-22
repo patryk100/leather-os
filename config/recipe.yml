@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: leather-os
 description: RTX 3070/Ryzen 9 HWE Engineering Station
-base-image: ghcr.io/ublue-os/hwe/silverblue-nvidia
-image-version: 41 # Stable current version for 2026
+base-image: ghcr.io/ublue-os/silverblue-nvidia
+image-version: 43 # Stable current version for 2026
 
 modules:
   - type: dnf
