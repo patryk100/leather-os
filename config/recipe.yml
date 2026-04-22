@@ -1,59 +1,70 @@
 name: leather-os
-description: Desktop home workstation 
-base-image: ghcr.io/ublue-os/silverblue-nvidia:44 
-image-flavor: main
+description: RTX 3070/Ryzen 9 Engineering & Security Workstation
+base-image: ghcr.io/ublue-os/silverblue-nvidia
+image-version: 44 # Or 'latest'. Use '40' or '41' to match current Fedora versions.
 
 modules:
   - type: rpm-ostree
     install:
-      # --- The Desktop & High-Perf Terminal ---
+      # --- Desktop & Terminal ---
       - hyprland
-      - foot             # Native Wayland terminal (Fastest for your Ryzen 9)
-      - waybar           # Status bar
-      - wofi             # App launcher
+      - foot
+      - waybar
+      - wofi
+      - hyprpaper
       - xdg-desktop-portal-hyprland
       
-      # --- Hardware & Kernel Integration ---
-      - keyd             # Kernel-level mapping (Caps Lock -> Ctrl)
-      - v4l2loopback     # OBS Virtual Camera support
-      - libva-nvidia-driver # Explicit Sync (Nvidia 555+) for your 3070
+      # --- Hardware & Drivers ---
+      - libva-nvidia-driver
+      - v4l2loopback
+      - keyd
       
-      # --- Core Workflow & LSPs (Layered for Neovim) ---
+      # --- Shell & Core Workflow ---
+      - zsh
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
       - neovim
       - tmux
-      - zsh
-      - golang           # Required for gopls (Nvim)
-      - python3          # Required for pyright/black (Nvim)
-      - gcc              # Base compiler for Treesitter/Plugins
-      - make             # Build automation
-      - stow             # Dotfile management
+      - stow
       
-      # --- The "Modern Unix" Essentials ---
-      - eza              # Modern ls
-      - bat              # Modern cat
-      - zoxide           # Smart cd
-      - ripgrep          # Fast search
-      - fd               # Fast find
-      - fzf              # Fuzzy finder
-      - just             # Modern make replacement
-      - distrobox        # For HTB/Security containers
-
-  - type: brew           # Use Homebrew for fast-moving CLIs (The DX Way)
-    install:
-      - awscli
-      - kubernetes-cli   # kubectl
+      # --- Dev & Cloud (Moved back here for base image stability) ---
+      - golang
+      - gcc
+      - gcc-c++
+      - make
+      - python3
+      - python3-pip
+      - awscli2
+      - kubernetes-client
       - helm
-      - starship         # Cross-shell prompt
-      - atuin            # Shell history sync
+      
+      # --- Security & Modern CLI ---
+      - nmap
+      - tcpdump
+      - eza
+      - bat
+      - zoxide
+      - ripgrep
+      - fd
+      - starship
+      - fzf
+      - just
+      - distrobox
+
+  - type: brew
+    # The brew module now handles its own internal logic. 
+    # You run 'brew install' in your terminal after booting.
 
   - type: default-flatpaks
-    install:
-      - org.mozilla.firefox
-      - md.obsidian.Obsidian
-      - com.obsproject.Studio
-      - org.gnome.Ptyxis     # Best container-native terminal for Fedora
-      - org.gnome.Extensions.GSConnect # Phone integration (GNOME side)
+    configurations:
+      - scope: system
+        install:
+          - org.mozilla.firefox
+          - md.obsidian.Obsidian
+          - com.obsproject.Studio
+          - org.gnome.Ptyxis
+          - org.gnome.Extensions.GSConnect
 
   - type: script
     scripts:
-      - setup-zsh.sh     # Automates chsh to /bin/zsh
+      - setup-zsh.sh
