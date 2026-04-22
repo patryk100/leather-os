@@ -1,0 +1,59 @@
+name: leather-os
+description: Desktop home workstation 
+base-image: ghcr.io/ublue-os/silverblue-nvidia:44 
+image-flavor: main
+
+modules:
+  - type: rpm-ostree
+    install:
+      # --- The Desktop & High-Perf Terminal ---
+      - hyprland
+      - foot             # Native Wayland terminal (Fastest for your Ryzen 9)
+      - waybar           # Status bar
+      - wofi             # App launcher
+      - xdg-desktop-portal-hyprland
+      
+      # --- Hardware & Kernel Integration ---
+      - keyd             # Kernel-level mapping (Caps Lock -> Ctrl)
+      - v4l2loopback     # OBS Virtual Camera support
+      - libva-nvidia-driver # Explicit Sync (Nvidia 555+) for your 3070
+      
+      # --- Core Workflow & LSPs (Layered for Neovim) ---
+      - neovim
+      - tmux
+      - zsh
+      - golang           # Required for gopls (Nvim)
+      - python3          # Required for pyright/black (Nvim)
+      - gcc              # Base compiler for Treesitter/Plugins
+      - make             # Build automation
+      - stow             # Dotfile management
+      
+      # --- The "Modern Unix" Essentials ---
+      - eza              # Modern ls
+      - bat              # Modern cat
+      - zoxide           # Smart cd
+      - ripgrep          # Fast search
+      - fd               # Fast find
+      - fzf              # Fuzzy finder
+      - just             # Modern make replacement
+      - distrobox        # For HTB/Security containers
+
+  - type: brew           # Use Homebrew for fast-moving CLIs (The DX Way)
+    install:
+      - awscli
+      - kubernetes-cli   # kubectl
+      - helm
+      - starship         # Cross-shell prompt
+      - atuin            # Shell history sync
+
+  - type: default-flatpaks
+    install:
+      - org.mozilla.firefox
+      - md.obsidian.Obsidian
+      - com.obsproject.Studio
+      - org.gnome.Ptyxis     # Best container-native terminal for Fedora
+      - org.gnome.Extensions.GSConnect # Phone integration (GNOME side)
+
+  - type: script
+    scripts:
+      - setup-zsh.sh     # Automates chsh to /bin/zsh
