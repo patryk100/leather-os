@@ -1,9 +1,16 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: leather-os
 description: RTX 3070/Ryzen 9 Engineering & Security Workstation
 base-image: ghcr.io/ublue-os/silverblue-nvidia
-image-version: 44 # Or 'latest'. Use '40' or '41' to match current Fedora versions.
+image-version: 44
 
 modules:
+  - type: copr
+    enable:
+      - nett00n/hyprland      # Essential for Hyprland & Waybar
+      - chronoscrat/starship  # For your shell prompt
+      - nickavem/keyd         # For your Caps Lock -> Control mapping
+
   - type: rpm-ostree
     install:
       # --- Desktop & Terminal ---
@@ -15,8 +22,8 @@ modules:
       - xdg-desktop-portal-hyprland
       
       # --- Hardware & Drivers ---
-      - nvidia-vaapi-driver  # Corrected name for Fedora 44
-      - v4l2loopback
+      - libva-nvidia-driver   # Corrected name
+      - akmod-v4l2loopback    # Corrected name for atomic systems
       - keyd
       
       # --- Shell & Core Workflow ---
@@ -34,7 +41,7 @@ modules:
       - make
       - python3
       - python3-pip
-      - awscli               # Corrected from awscli2
+      - awscli
       - kubernetes-client
       - helm
       
@@ -45,7 +52,7 @@ modules:
       - bat
       - zoxide
       - ripgrep
-      - fd
+      - fd-find               # Corrected name
       - starship
       - fzf
       - just
