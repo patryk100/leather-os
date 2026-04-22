@@ -1,0 +1,27 @@
+name: build-patryk-os
+on:
+  schedule:
+    - cron: "0 0 * * *" # Build nightly to stay updated
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  bluebuild:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Build Custom Image
+        uses: blue-build/github-action@v1
+        with:
+          recipe: 'recipe.yml' # BlueBuild looks inside config/ automatically
+          cosign_private_key: ${{ secrets.SIGNING_SECRET }}
+          registry_token: ${{ github.token }}
+          prune: true
