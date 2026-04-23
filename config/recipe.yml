@@ -13,6 +13,8 @@ modules:
         - alternateved/keyd
         - nett00n/hyprland
     install:
+      skip-unavailable: true
+      skip-broken: true
       packages:
         # --- Tiling Environment ---
         - hyprland
@@ -21,11 +23,11 @@ modules:
         - wofi
         - hyprpaper
         - xdg-desktop-portal-hyprland
+        - wl-clipboard
 
         # --- Drivers & Kernel ---
         - libva-nvidia-driver
         - akmod-v4l2loopback
-        - keyd
 
         # --- Core Workflow ---
         - zsh
@@ -56,6 +58,13 @@ modules:
         - fzf
         - just
         - distrobox
+
+  # keyd installed separately so its scriptlet failure doesn't nuke the main transaction
+  - type: dnf
+    install:
+      skip-broken: true
+      packages:
+        - keyd
 
   - type: default-flatpaks
     configurations:
