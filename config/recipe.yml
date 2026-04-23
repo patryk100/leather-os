@@ -1,18 +1,10 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: leather-os
 description: RTX 3070/Ryzen 9 HWE Engineering Station
-base-image: ghcr.io/ublue-os/silverblue-nvidia
-image-version: 43 # Stable current version for 2026
+base-image: ghcr.io/ublue-os/hwe/silverblue-nvidia
+image-version: 43
 
 modules:
-  - type: dnf
-    # This module handles COPR and RPM Fusion natively
-    repos:
-      copr:
-        - nett00n/hyprland
-        - nickavem/keyd
-        - chronoscrat/starship
-
   - type: rpm-ostree
     install:
       # --- Desktop & Terminal ---
@@ -26,7 +18,7 @@ modules:
       # --- Hardware & Drivers ---
       - libva-nvidia-driver
       - akmod-v4l2loopback
-      - keyd
+      - keyd                 # Now in official Fedora 43 repos!
       
       # --- Shell & Core Workflow ---
       - zsh
@@ -53,7 +45,7 @@ modules:
       - zoxide
       - ripgrep
       - fd-find
-      - starship
+      - starship             # Now in official Fedora 43 repos!
       - fzf
       - just
       - distrobox
@@ -70,4 +62,4 @@ modules:
 
   - type: script
     scripts:
-      - setup-zsh.sh # Keeps your shell preference
+      - setup-zsh.sh

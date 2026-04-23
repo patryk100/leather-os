@@ -24,4 +24,3 @@ jobs:
           recipe: 'recipe.yml' # BlueBuild looks inside config/ automatically
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
-          prune: true
