@@ -35,10 +35,13 @@ modules:
         # --- System monitoring (needs real host view) ---
         - htop
         - btop
-        - jetbrains-mono-fonts
-        - google-noto-sans-mono-fonts
-        - adobe-source-code-pro-fonts
 
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+        - FiraCode
+        - Hack
   # Tiling — Hyprland from solopasha/hyprland COPR
   - type: dnf
     install:
