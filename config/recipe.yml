@@ -20,17 +20,19 @@ modules:
         - zsh-syntax-highlighting
         - neovim
         - stow
-        # --- Modern CLI ---
+        # --- Modern CLI (used daily, every shell) ---
         - eza
         - bat
         - zoxide
         - ripgrep
         - fd-find
         - starship
+        - fzf
         - wl-clipboard
         - jq
         - yq
         - gh
+        # --- System monitoring (needs real host view) ---
         - htop
         - btop
 
@@ -45,19 +47,8 @@ modules:
         - waybar
         - wofi
 
-  # Dev tools (large)
-  - type: dnf
-    install:
-      packages:
-        - golang
-        - gcc
-        - gcc-c++
-        - make
-        - python3
-        - python3-pip
-        - awscli
-
   # Container & virtualization stack
+  # podman is in the base image; adding the ergonomic extras
   - type: dnf
     install:
       packages:
@@ -74,7 +65,7 @@ modules:
       packages:
         - libva-nvidia-driver
 
-  # Kernel modules — uses ublue-os/akmods pre-built RPMs instead of building locally
+  # Kernel modules — pre-built from ublue-os/akmods
   - type: akmods
     install:
       - v4l2loopback
