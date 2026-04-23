@@ -11,24 +11,8 @@ modules:
       copr:
         - atim/starship
         - alternateved/keyd
-        - nett00n/hyprland
     install:
-      skip-unavailable: true
-      skip-broken: true
       packages:
-        # --- Tiling Environment ---
-        - hyprland
-        - foot
-        - waybar
-        - wofi
-        - hyprpaper
-        - xdg-desktop-portal-hyprland
-        - wl-clipboard
-
-        # --- Drivers & Kernel ---
-        - libva-nvidia-driver
-        - akmod-v4l2loopback
-
         # --- Core Workflow ---
         - zsh
         - zsh-autosuggestions
@@ -36,18 +20,6 @@ modules:
         - neovim
         - tmux
         - stow
-
-        # --- Dev & Cloud ---
-        - golang
-        - gcc
-        - gcc-c++
-        - make
-        - python3
-        - python3-pip
-        - awscli
-        - kubernetes-client
-        - helm
-
         # --- Modern CLI ---
         - eza
         - bat
@@ -58,13 +30,7 @@ modules:
         - fzf
         - just
         - distrobox
-
-  # keyd installed separately so its scriptlet failure doesn't nuke the main transaction
-  - type: dnf
-    install:
-      skip-broken: true
-      packages:
-        - keyd
+        - wl-clipboard
 
   - type: default-flatpaks
     configurations:
@@ -72,10 +38,3 @@ modules:
         install:
           - org.mozilla.firefox
           - md.obsidian.Obsidian
-          - com.obsproject.Studio
-          - org.gnome.Ptyxis
-          - org.gnome.Extensions.GSConnect
-
-  - type: script
-    scripts:
-      - setup-zsh.sh
