@@ -44,6 +44,7 @@ modules:
     install:
       packages:
         - hyprland
+        - hyprland-qtutils
         - hyprpaper
         - xdg-desktop-portal-hyprland
         - foot
