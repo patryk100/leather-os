@@ -7,7 +7,7 @@ image-version: 43
 modules:
   - type: script
     scripts:
-      - enable-repos.sh # Unlocks RPM Fusion and COPRs
+      - enable-repos.sh
 
   - type: rpm-ostree
     install:
@@ -19,7 +19,7 @@ modules:
       - hyprpaper
       - xdg-desktop-portal-hyprland
       
-      # --- Drivers & Kernel Tools ---
+      # --- Drivers & Kernel ---
       - libva-nvidia-driver
       - akmod-v4l2loopback
       - keyd
@@ -32,7 +32,7 @@ modules:
       - tmux
       - stow
       
-      # --- Dev & Cloud Tooling ---
+      # --- Dev & Cloud ---
       - golang
       - gcc
       - gcc-c++
@@ -43,9 +43,7 @@ modules:
       - kubernetes-client
       - helm
       
-      # --- Security & Modern CLI ---
-      - nmap
-      - tcpdump
+      # --- Modern CLI ---
       - eza
       - bat
       - zoxide
