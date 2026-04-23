@@ -56,8 +56,6 @@ modules:
         - python3
         - python3-pip
         - awscli
-        - kubernetes-client
-        - helm
 
   # Container & virtualization stack
   - type: dnf
@@ -69,19 +67,19 @@ modules:
         - virt-manager
         - libvirt
 
-  # The suspects - isolate these
+  # NVIDIA VAAPI
   - type: dnf
     install:
       skip-broken: true
       packages:
         - libva-nvidia-driver
 
-  - type: dnf
+  # Kernel modules — uses ublue-os/akmods pre-built RPMs instead of building locally
+  - type: akmods
     install:
-      skip-broken: true
-      packages:
-        - akmod-v4l2loopback
+      - v4l2loopback
 
+  # keyd — isolated due to sysusers scriptlet quirks
   - type: dnf
     install:
       skip-broken: true
