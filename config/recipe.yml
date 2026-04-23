@@ -11,6 +11,7 @@ modules:
       copr:
         - atim/starship
         - alternateved/keyd
+        - solopasha/hyprland
     install:
       packages:
         # --- Core Workflow ---
@@ -27,16 +28,22 @@ modules:
         - fd-find
         - starship
         - wl-clipboard
-    # Tiling (small, unlikely to fail)
+        - jq
+        - yq
+        - gh
+        - htop
+        - btop
+
+  # Tiling — Hyprland from solopasha/hyprland COPR
   - type: dnf
     install:
       packages:
         - hyprland
+        - hyprpaper
+        - xdg-desktop-portal-hyprland
         - foot
         - waybar
         - wofi
-        - hyprpaper
-        - xdg-desktop-portal-hyprland
 
   # Dev tools (large)
   - type: dnf
@@ -51,6 +58,16 @@ modules:
         - awscli
         - kubernetes-client
         - helm
+
+  # Container & virtualization stack
+  - type: dnf
+    install:
+      packages:
+        - podman-compose
+        - buildah
+        - skopeo
+        - virt-manager
+        - libvirt
 
   # The suspects - isolate these
   - type: dnf
