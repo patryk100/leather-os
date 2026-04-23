@@ -10,8 +10,6 @@ dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-
 # Note: hyprland and starship are actually in the main repos for F43, 
 # but we'll enable these for the absolute latest versions.
 dnf5 -y copr enable nett00n/hyprland
-dnf5 -y copr enable nickavem/keyd
-dnf5 -y copr enable chronoscrat/starship
 
 # 3. Force a metadata refresh
 dnf5 makecache
