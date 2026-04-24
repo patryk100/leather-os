@@ -51,9 +51,9 @@ modules:
         - hyprland
         - hyprland-qtutils
         - hyprpaper
-        # - hyprlock
-        - mako
-        - gpu-screen-recorder
+        - hyprlock
+        # - mako
+        # - gpu-screen-recorder
         - xdg-desktop-portal-hyprland
         - foot
         - waybar
