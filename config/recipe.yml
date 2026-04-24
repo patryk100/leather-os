@@ -99,3 +99,5 @@ modules:
         install:
           - org.mozilla.firefox
           - md.obsidian.Obsidian
+          - io.mpv.Mpv           
+          - org.kde.okular       
