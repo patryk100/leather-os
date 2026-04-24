@@ -35,6 +35,8 @@ modules:
         # --- System monitoring (needs real host view) ---
         - htop
         - btop
+        - ddcutil
+        - i2c-tools
 
   - type: fonts
     fonts:
@@ -49,10 +51,14 @@ modules:
         - hyprland
         - hyprland-qtutils
         - hyprpaper
+        - hyprlock
         - xdg-desktop-portal-hyprland
         - foot
         - waybar
         - wofi
+        - pavucontrol
+        - wlogout
+        - network-manager-applet
 
   # Container & virtualization stack
   # podman is in the base image; adding the ergonomic extras
