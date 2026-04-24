@@ -12,6 +12,7 @@ modules:
         - atim/starship
         - alternateved/keyd
         - solopasha/hyprland
+        - brycensranch/gpu-screen-recorder-git
     install:
       packages:
         # --- Core Workflow ---
