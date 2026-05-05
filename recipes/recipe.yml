@@ -8,10 +8,12 @@ modules:
   - type: dnf
     repos:
       nonfree: rpmfusion
+      # Added Terra repo for stable Hyprland on Fedora 44
+      extra:
+        - https://repos.fyralabs.com/terra44/terra-release-44-1.noarch.rpm
       copr:
         - atim/starship
         - alternateved/keyd
-        # hyprland COPR removed - now using official Fedora 44 repos
         - brycensranch/gpu-screen-recorder-git
     install:
       packages:
@@ -46,7 +48,7 @@ modules:
         - FiraCode
         - Hack
 
-  # Tiling — Hyprland (Now from official Fedora 44 repos)
+  # Tiling — Hyprland (Now pulling from Terra Repo)
   - type: dnf
     install:
       packages:
@@ -63,7 +65,7 @@ modules:
         - pavucontrol
         - wlogout
         - network-manager-applet
-        - qt6-qtwayland # Added for better Hyprland compatibility
+        - qt6-qtwayland 
 
   # Container & virtualization stack
   - type: dnf
@@ -87,12 +89,16 @@ modules:
     install:
       - v4l2loopback
 
-  # keyd — isolated for stability
+  # keyd
   - type: dnf
     install:
       skip-broken: true
       packages:
         - keyd
+
+  - type: script
+    scripts:
+      - setup-zsh.sh
 
   - type: default-flatpaks
     configurations:
@@ -102,7 +108,3 @@ modules:
           - md.obsidian.Obsidian
           - io.mpv.Mpv           
           - org.kde.okular
-  
-  - type: script
-    scripts:
-      - setup-zsh.sh
