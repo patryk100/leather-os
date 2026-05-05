@@ -8,12 +8,11 @@ modules:
   - type: dnf
     repos:
       nonfree: rpmfusion
-      # Added Terra repo for stable Hyprland on Fedora 44
-      extra:
-        - https://repos.fyralabs.com/terra44/terra-release-44-1.noarch.rpm
       copr:
         - atim/starship
         - alternateved/keyd
+        # Updated to the active Fedora 44 Hyprland COPR
+        - nett00n/hyprland
         - brycensranch/gpu-screen-recorder-git
     install:
       packages:
@@ -48,7 +47,7 @@ modules:
         - FiraCode
         - Hack
 
-  # Tiling — Hyprland (Now pulling from Terra Repo)
+  # Tiling — Hyprland (Pulling from nett00n COPR)
   - type: dnf
     install:
       packages:
@@ -96,6 +95,7 @@ modules:
       packages:
         - keyd
 
+  # Executes files/scripts/setup-zsh.sh
   - type: script
     scripts:
       - setup-zsh.sh
