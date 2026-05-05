@@ -2,7 +2,7 @@
 name: leather-os
 description: RTX 3070/Ryzen 9 Engineering Station
 base-image: ghcr.io/ublue-os/silverblue-nvidia
-image-version: 43
+image-version: 44
 
 modules:
   - type: dnf
@@ -11,7 +11,7 @@ modules:
       copr:
         - atim/starship
         - alternateved/keyd
-        - solopasha/hyprland
+        # hyprland COPR removed - now using official Fedora 44 repos
         - brycensranch/gpu-screen-recorder-git
     install:
       packages:
@@ -21,7 +21,7 @@ modules:
         - zsh-syntax-highlighting
         - neovim
         - stow
-        # --- Modern CLI (used daily, every shell) ---
+        # --- Modern CLI ---
         - eza
         - bat
         - zoxide
@@ -33,7 +33,7 @@ modules:
         - jq
         - yq
         - gh
-        # --- System monitoring (needs real host view) ---
+        # --- System monitoring ---
         - htop
         - btop
         - ddcutil
@@ -45,14 +45,15 @@ modules:
         - JetBrainsMono
         - FiraCode
         - Hack
-  # Tiling — Hyprland from solopasha/hyprland COPR
+
+  # Tiling — Hyprland (Now from official Fedora 44 repos)
   - type: dnf
     install:
       packages:
         - hyprland
-        - hyprland-qtutils
         - hyprpaper
         - hyprlock
+        - hypridle
         - mako
         - gpu-screen-recorder
         - xdg-desktop-portal-hyprland
@@ -62,9 +63,9 @@ modules:
         - pavucontrol
         - wlogout
         - network-manager-applet
+        - qt6-qtwayland # Added for better Hyprland compatibility
 
   # Container & virtualization stack
-  # podman is in the base image; adding the ergonomic extras
   - type: dnf
     install:
       packages:
@@ -81,12 +82,12 @@ modules:
       packages:
         - libva-nvidia-driver
 
-  # Kernel modules — pre-built from ublue-os/akmods
+  # Kernel modules
   - type: akmods
     install:
       - v4l2loopback
 
-  # keyd — isolated due to sysusers scriptlet quirks
+  # keyd — isolated for stability
   - type: dnf
     install:
       skip-broken: true
@@ -100,4 +101,4 @@ modules:
           - org.mozilla.firefox
           - md.obsidian.Obsidian
           - io.mpv.Mpv           
-          - org.kde.okular       
+          - org.kde.okular
