@@ -102,3 +102,7 @@ modules:
           - md.obsidian.Obsidian
           - io.mpv.Mpv           
           - org.kde.okular
+  
+  - type: script
+    scripts:
+      - setup-zsh.sh
