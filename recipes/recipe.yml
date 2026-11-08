@@ -11,10 +11,11 @@ modules:
       copr:
         - atim/starship
         - alternateved/keyd
-        # Updated to the active Fedora 44 Hyprland COPR
-        - nett00n/hyprland
+        # Stable Fedora 44 Hyprland COPR (keeps native hyprland.conf support)
+        - eli-xciv/hyprland
         - brycensranch/gpu-screen-recorder-git
     install:
+      skip-broken: true
       packages:
         # --- Core Workflow ---
         - zsh
@@ -39,23 +40,11 @@ modules:
         - btop
         - ddcutil
         - i2c-tools
-
-  - type: fonts
-    fonts:
-      nerd-fonts:
-        - JetBrainsMono
-        - FiraCode
-        - Hack
-
-  # Tiling — Hyprland (Pulling from nett00n COPR)
-  - type: dnf
-    install:
-      packages:
+        # --- Tiling — Hyprland ---
         - hyprland
         - hyprpaper
         - hyprlock
         - hypridle
-        - hyprland-guiutils
         - mako
         - gpu-screen-recorder
         - xdg-desktop-portal-hyprland
@@ -65,36 +54,28 @@ modules:
         - pavucontrol
         - wlogout
         - network-manager-applet
-        - qt6-qtwayland 
-
-  # Container & virtualization stack
-  - type: dnf
-    install:
-      packages:
+        - qt6-qtwayland
+        # --- Container & virtualization stack ---
         - podman-compose
         - buildah
         - skopeo
         - virt-manager
         - libvirt
-
-  # NVIDIA VAAPI
-  - type: dnf
-    install:
-      skip-broken: true
-      packages:
+        # --- NVIDIA VAAPI & Input ---
         - libva-nvidia-driver
+        - keyd
+
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - JetBrainsMono
+        - FiraCode
+        - Hack
 
   # Kernel modules
   - type: akmods
     install:
       - v4l2loopback
-
-  # keyd
-  - type: dnf
-    install:
-      skip-broken: true
-      packages:
-        - keyd
 
   # Executes files/scripts/setup-zsh.sh
   - type: script
@@ -107,5 +88,5 @@ modules:
         install:
           - org.mozilla.firefox
           - md.obsidian.Obsidian
-          - io.mpv.Mpv           
+          - io.mpv.Mpv
           - org.kde.okular
