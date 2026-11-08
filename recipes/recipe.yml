@@ -12,10 +12,10 @@ modules:
         - atim/starship
         - alternateved/keyd
         # Stable Fedora 44 Hyprland COPR (keeps native hyprland.conf support)
+        - mpapacc/hyprland
         - eli-xciv/hyprland
         - brycensranch/gpu-screen-recorder-git
     install:
-      skip-broken: true
       packages:
         # --- Core Workflow ---
         - zsh
