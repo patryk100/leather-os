@@ -55,6 +55,7 @@ modules:
         - hyprpaper
         - hyprlock
         - hypridle
+        - hyprland-guiutils
         - mako
         - gpu-screen-recorder
         - xdg-desktop-portal-hyprland
