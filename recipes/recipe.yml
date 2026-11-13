@@ -7,7 +7,6 @@ image-version: 44
 modules:
   - type: dnf
     repos:
-      nonfree: rpmfusion
       copr:
         - atim/starship
         - alternateved/keyd
@@ -71,11 +70,6 @@ modules:
         - JetBrainsMono
         - FiraCode
         - Hack
-
-  # Kernel modules
-  - type: akmods
-    install:
-      - v4l2loopback
 
   # Executes files/scripts/setup-zsh.sh
   - type: script
